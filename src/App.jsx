@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div className="App">
-      <p className="title">Image to QR Code Like Visual Converter</p>
+      <p className="title">Image to QR Code Pixel Art</p>
 
       <TextAnimation />
 
