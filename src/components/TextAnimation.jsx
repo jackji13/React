@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function TextAnimation() {
   const [displayText, setDisplayText] = useState('');
   const targetText = `This website is an artistic tool that transforms regular images
-  into QR code-like pixel art for creative visual purposes. Right-click the converted image to download.`;
+  into QR code-like pixel art for creative visual purposes. Right click the converted image to download.`;
   const duration = 1200;
   const frameRate = 50;
   const totalFrames = duration / (1000 / frameRate);
