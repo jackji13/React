@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import ImageUpload from './components/ImageUpload';
 import QRVisual from './components/QRVisual';
+import TextAnimation from './components/TextAnimation';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -12,11 +13,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Image to QR Code Like Visual Converter</h1>
-      <p>
-      This website is an artistic tool that transforms regular images 
-      into QR code-like pixel art for creative visual purposes.
-      </p>
+      <p className="title">Image to QR Code Like Visual Converter</p>
+
+      <TextAnimation />
+
       <ImageUpload onUpload={handleImageUpload} />
       
       <div className="visuals-container">

@@ -23,9 +23,8 @@ html {
   font-family: 'Consola', sans-serif;
 }
 
-h1 {
+.title {
   font-size: 24pt;
-  text-align: center;
 }
 
 p {
