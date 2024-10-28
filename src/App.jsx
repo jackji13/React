@@ -1,67 +1,45 @@
-import './App.css'
-import Greeting from "./Greeting";
-import Welcome from "./Welcome";
-import Counter from "./Counter";
-import Form from "./Form";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './App.css';
+import ImageUpload from './components/ImageUpload';
+import QRVisual from './components/QRVisual';
 
 function App() {
-  const your_name = "jay"
-  const students = [
-		{name: "lily", score: 80},
-		{name: "jay", score: 50},
-		{name: "kat", score: 85},
-	]
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState([]);
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(data => {
-        setPosts(data);
-        setLoading(false);
-      });
-  }, []);
-  
+  const handleImageUpload = (data) => {
+    setImages([...images, ...data]);
+  };
+
   return (
-    <div>
-      <div>
-        <Greeting />
-        <Greeting />
-        <Greeting />
-        <Greeting />
-        <Greeting />
-        
-	      <Welcome name="lily" />
-	      <Welcome name={your_name} />
-
-        <Counter></Counter>
-
-        <Form></Form>
-
-
-      <div>
-        {students.map((student, index) => (
-          <Welcome key={index} name={student.name} score={student.score}/>
-        ))}
-      </div>
-
-      </div>
-
-      <div>
-      {loading ? <p>Loading...</p> : (
-        <ul>
-          {posts.map(item => (
-            <li key={item.id}>{item.title}</li>
+    <div className="App">
+      <h1>Image to QR Code Like Visual Converter</h1>
+      <p>
+      This website is an artistic tool that transforms regular images 
+      into QR code-like pixel art for creative visual purposes.
+      </p>
+      <ImageUpload onUpload={handleImageUpload} />
+      
+      <div className="visuals-container">
+        <div className="preview-images">
+          {images.map((imageData, index) => (
+            <div key={`preview-${index}`} className="image-wrapper">
+              <img src={imageData} alt={`Preview ${index + 1}`} />
+              <p className="image-number">{String(index + 1).padStart(3, '0')}</p>
+            </div>
           ))}
-        </ul>
-      )}
-    </div>
+        </div>
 
+        <div className="qr-visuals-list">
+          {images.map((imageData, index) => (
+            <div key={`qr-${index}`} className="qr-wrapper">
+              <QRVisual imageData={imageData} />
+              <p className="qr-number">{String(index + 1).padStart(3, '0')}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-    
-  )
+  );
 }
 
-export default App
+export default App;
